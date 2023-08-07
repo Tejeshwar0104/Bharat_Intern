@@ -1,0 +1,45 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+pdf1 = pd.read_csv("C:/Users/WELCOME/OneDrive/Documents/INTERNSHIP/titanic/train.csv")
+
+pdf2 = pd.read_csv("C:/Users/WELCOME/OneDrive/Documents/INTERNSHIP/titanic/test.csv")
+
+data = pd.concat([pdf1,pdf2])
+data
+
+data.dtypes
+
+data.isnull().sum()
+
+data.drop(['Cabin'],axis = 1, inplace = True)
+data
+
+data = data.dropna()
+data
+
+data.isnull().sum()
+
+plt.hist(data['Survived'])
+plt.xlabel("Survived")
+
+plt.bar(data["Survived"],data["Fare"])
+plt.xlabel("Survived")
+plt.ylabel("Fare")
+
+data[(data["Survived"] == 1)]
+
+data[(data['Survived'] == 1) & (data["Sex"] == 'male')]
+
+data[(data['Survived'] == 1) & (data["Age"] > 25)]
+
+data[(data['Survived'] == 1) & (data["Age"] > 25) & (data['Pclass'] == 1)]
+
+data[(data["Survived"] == 1) & (data['Fare'] > 200)]
+
+sns.barplot(x = data['Embarked'], y = data['Survived'])
+
+data[(data['Survived'] == 0)]
+
+data[(data['Survived'] == 0) & (data["Sex"] == 'male')]
